@@ -16,9 +16,30 @@ Say goodbye to confusion and inefficiency – with our Room Booking Web App, boo
 
 # Table of Contents
 
+1. [Setup and Installation](#setup-and-installation)
+2. [Prerequisites](#prerequisites)
+3. [How to Use](#how-to-use)
+    1. [Logging In](#logging-in)
+    2. [Filter by Preference](#filter-by-preference)
+    3. [Choose Your Room](#choose-your-room)
+    4. [Check Your Bookings](#check-your-bookings)
+    5. [Delete Unwanted Bookings](#delete-unwanted-bookings)
+4. [Getting Started](#getting-started)
+5. [Learn More](#learn-more)
+6. [Deploy on Vercel](#deploy-on-vercel)
+
+
+
+
+
 # Setup and Installation 
 
 ## Prerequisites 
+
+- Node.js and npm installed
+- Clone the repository to your local machine.
+
+
 
 ## 
 
@@ -29,47 +50,29 @@ Users can log in with their designated email and password, allowing them to acce
 
 ## Filter by Preference
 
+Users can quickly narrow down their choices based on the following preferences:
+
+**Library**: Select your preferred library from a list of available options. Whether you're looking for a quiet study room in the Robarts Library or a meeting space in the Gerstein Library, you can easily find rooms in the library that suits you best.
+
+**Date**: Pick the exact date that works for you. The app lets you filter rooms based on a specific day, so you can find availability without having to scroll through irrelevant options.
+
+**Time**: Choose your desired start and end time. Whether you need a room in the morning or late afternoon, the system will show you rooms that fit within your selected time window, making scheduling easy and efficient.
+
+**Number of Attendees**: Specify how many people will be attending your meeting or study session. The app will filter available rooms based on the number of attendees, ensuring that the space you book has enough capacity to comfortably accommodate everyone.
+
+By adjusting these filters, you can quickly and efficiently find the best room that matches all of your preferences, saving you time and effort. No more navigating between pages or going back and forth to check availability – everything you need is right at your fingertips.
+
 ## Choose Your Room
 
+LibraLink will then provide a list of available rooms from a variety of libraries and buildings. The user can then choose which room to book, according to their listed times and location. 
+
 ## Check Your Bookings
+At any time, you can view a list of your active bookings, including important details such as:
 
-## 
+**Library**: The location of your reserved room.
+**Date**: The scheduled date for your booking.
+**Time**: The start and end time of your reserved room.
+This overview gives you a quick snapshot of your upcoming study sessions or meetings, making it easy to track all your reservations.
 
-
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Delete Unwanted Bookings
+Plans change, and deleting any booking you no longer need is simple. Each booking displays a delete button next to it, which, when clicked, will remove the booking from your list.
