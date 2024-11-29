@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import styles from "./profile.module.css";
+import Link from "next/link"; 
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -56,6 +57,11 @@ export default function ProfilePage() {
           You have no bookings at the moment.
         </p>
       )}
+      {/* Back to Home Button */}
+      <Link href="/" className={styles.backButton}>
+        Back to Home
+      </Link>
+
     </div>
   );
 }
