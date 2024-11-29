@@ -50,7 +50,7 @@ Users can quickly narrow down their choices based on the following preferences:
 
 By adjusting these filters, you can quickly and efficiently find the best room that matches all of your preferences, saving you time and effort. No more navigating between pages or going back and forth to check availability – everything you need is right at your fingertips.
 
-<img src="/public/images/profile1.png" alt="Home" width="600"/>
+<img src="/public/images/profile1.jpg" alt="Home" width="600"/>
 
 
 ## Choose Your Room
