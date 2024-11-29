@@ -10,19 +10,27 @@ export default function Home() {
     "Gerstein Library",
     "E.J. Pratt Library",
     "OISE Library",
+    "Architecture, Landscape, and Design (Eberhard Zeidler Library)",
+    "Dentistry Library (Harry R. Abbott)",
+    "Engineering & Computer Science Library",
+    "Law Library (Bora Laskin)",
+    "Music Library",
+    "Regis College Library"
   ];
 
   const [selectedLibrary, setSelectedLibrary] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const handleSearch = () => {
     const library = selectedLibrary || "all libraries";
     const date = selectedDate || "any date";
-    const time = selectedTime || "any time";
+    const start = startTime || "any start time";
+    const end = endTime || "any end time";
 
     alert(
-      `You are searching for empty rooms in ${library} on ${date} at ${time}.`
+      `You are searching for empty rooms in ${library} on ${date} between ${start} and ${end}.`
     );
   };
 
@@ -33,7 +41,7 @@ export default function Home() {
           src="/images/logo.svg"
           alt="LibraLink Logo"
           width={150}
-          height={50}
+          height={150}
           priority
         />
         <nav className={styles.nav}>
@@ -83,11 +91,23 @@ export default function Home() {
 
           <div className={styles.formGroup}>
             <label>
-              <strong>Select Time:</strong>
+              <strong>Select Start Time:</strong>
               <input
                 type="time"
-                value={selectedTime}
-                onChange={(e) => setSelectedTime(e.target.value)}
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className={styles.input}
+              />
+            </label>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Select End Time:</strong>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
                 className={styles.input}
               />
             </label>
