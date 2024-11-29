@@ -53,16 +53,13 @@ export default function Home() {
           src="/images/logo.png"
           alt="LibraLink Logo"
           width={150}
-          height={150}
+          height={140}
           priority
         />
         <nav className={styles.nav}>
-          <a href="#" className={styles.navLink}>
-            Home
-          </a>
-          <a href="#" className={styles.navLink}>
+          <Link href="/about" className={styles.navLink}>
             About
-          </a>
+          </Link>
           <a href="#" className={styles.navLink}>
             Contact
           </a>
