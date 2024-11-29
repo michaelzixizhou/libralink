@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   providers: [
@@ -8,9 +8,15 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET, // Use a secure, random secret key
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt', // Use JSON Web Tokens for sessions
+    strategy: "jwt",
+  },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Redirect to the homepage after login
+      return baseUrl; // This redirects to "/"
+    },
   },
 };
 

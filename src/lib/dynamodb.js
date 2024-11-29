@@ -1,6 +1,6 @@
 'use server'
 import { fromEnv } from '@aws-sdk/credential-providers';
-import { DynamoDBClient, ListTablesCommand, PutItemCommand, GetItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, ListTablesCommand, PutItemCommand, GetItemCommand, QueryCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import AWS from "aws-sdk"
 
 const client = new DynamoDBClient({
@@ -126,27 +126,23 @@ export const getRoomBookings = async (roomNumber) => {
 
 export const getUserBookings = async (userID) => {
     const params = {
-        TableName: 'RoomsAndBookings',  // Name of your DynamoDB table
-        KeyConditionExpression: 'SK = :bookingSK',  // We will query based on the SK, as it includes userID
-        FilterExpression: 'contains(PK, :userID)', // Filter to match userID in the PK (room bookings)
+        TableName: 'RoomsAndBookings',  // The name of your DynamoDB table
+        FilterExpression: 'contains(SK, :bookingSK) AND userID = :userID',  // Filter by bookings and userID
         ExpressionAttributeValues: {
-            ':userID': { S: `USER#${userID}` },  // The userID will be part of the SK and PK
-            ':bookingSK': { S: 'BOOKING#' },     // Match bookings by the sort key
+            ':bookingSK': { S: 'BOOKING#' },   // Filter for bookings (SK starts with 'BOOKING#')
+            ':userID': { S: userID },          // Filter by user ID
         },
     };
 
     try {
-        // Execute the query with the specified parameters
-        const command = new QueryCommand(params);
+        // Send the scan command to DynamoDB
+        const command = new ScanCommand(params);
         const data = await client.send(command);
 
         console.log('Bookings for user', userID, ':', data.Items);
-
-        // Return the bookings if found, otherwise return an empty array
-        return data.Items || [];
+        return data.Items; // Return the list of bookings
     } catch (error) {
         console.error('Error fetching user bookings:', error);
         throw new Error('Error fetching user bookings');
     }
-};
-
+}
