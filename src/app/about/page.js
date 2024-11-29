@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./about.module.css";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -58,6 +59,9 @@ export default function About() {
           <strong className={styles.highlight}>Enhanced User Experience:</strong> With real-time availability updates, personalized room suggestions, and direct feedback channels, the system will offer a more responsive and user-friendly experience.
         </li>
       </ul>
+      <Link href="/" className={styles.backButton}>
+        Back to Home
+      </Link>
     </div>
   );
 }
