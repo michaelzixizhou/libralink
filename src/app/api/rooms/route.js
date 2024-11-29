@@ -12,25 +12,17 @@ export const POST = async (req, res) => {
 };
 
 export const GET = async (req, res) => {
-    const { roomNumber } = req.query;  // Get the room number from query parameters
-
-    if (!roomNumber) {
-        return res.status(400).json({ message: 'Room number is required' });  // Return 400 if no room number is provided
-    }
-
     try {
-        // Call the function to get room bookings
-        const bookings = await getRoomBookings(roomNumber);
+        // Call the getAllRooms function to retrieve rooms from DynamoDB
+        const rooms = await getAllRooms();
 
-        if (bookings && bookings.length > 0) {
-            console.log(`Bookings for Room ${roomNumber}:`, bookings);
-            res.status(200).json(bookings);  // Return the bookings as JSON
+        if (rooms && rooms.length > 0) {
+            res.status(200).json(rooms);  // Return the rooms as JSON
         } else {
-            console.log(`No bookings found for Room ${roomNumber}`);
-            res.status(404).json({ message: `No bookings found for Room ${roomNumber}` });
+            res.status(404).json({ message: 'No rooms found' });  // Return a message if no rooms are found
         }
     } catch (error) {
-        console.error('Error fetching bookings for room:', error);
-        res.status(500).json({ message: 'Error fetching room bookings', error: error.message });
+        console.error('Error fetching rooms:', error);
+        res.status(500).json({ message: 'Error fetching rooms', error: error.message });
     }
 };
