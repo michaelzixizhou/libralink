@@ -38,7 +38,7 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <Image
-          src="/images/logo.svg"
+          src="/images/logo.png"
           alt="LibraLink Logo"
           width={150}
           height={150}
