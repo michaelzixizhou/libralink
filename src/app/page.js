@@ -16,7 +16,7 @@ export default function Home() {
     "Engineering & Computer Science Library",
     "Law Library (Bora Laskin)",
     "Music Library",
-    "Regis College Library"
+    "Regis College Library",
   ];
 
   const [selectedLibrary, setSelectedLibrary] = useState("");
@@ -26,25 +26,24 @@ export default function Home() {
   const [attendees, setAttendees] = useState("");
 
   const handleSearch = () => {
-    const library = selectedLibrary || "all libraries";
-    const date = selectedDate || "any date";
-    const start = startTime || "any start time";
-    const end = endTime || "any end time";
-    const attendeesCount = attendees || "any number of attendees";
+    if (startTime && endTime && startTime >= endTime) {
+      alert("Start time must be earlier than end time.");
+      return;
+    }
 
-    alert(
-      `You are searching for empty rooms in ${library} on ${date} between ${start} and ${end} for ${attendeesCount}.`
-    );
+    if (attendees && attendees <= 0) {
+      alert("Please enter a valid number of attendees.");
+      return;
+    }
+
+    const message = `
+      📚 Library: ${selectedLibrary || "All Libraries"}
+      📅 Date: ${selectedDate || "Any Date"}
+      ⏰ Time: ${startTime || "Any Start Time"} - ${endTime || "Any End Time"}
+      👥 Attendees: ${attendees || "Any Number"}
+    `;
+    alert(message);
   };
-    // Placeholder for future database integration
-    // console.log({
-    //     library: selectedLibrary || "all",
-    //     date: selectedDate || "any",
-    //     startTime: startTime || "any",
-    //     endTime: endTime || "any",
-    //     attendees: attendees || "any",
-    //   });
-    // };
 
   return (
     <div className={styles.page}>
@@ -60,92 +59,92 @@ export default function Home() {
           <Link href="/about" className={styles.navLink}>
             About
           </Link>
-          <a href="#" className={styles.navLink}>
-            Contact
-          </a>
-          <Link href="/profile" className={styles.profileLink}>
+          <Link href="/profile" className={styles.navLink}>
             Profile
           </Link>
         </nav>
       </header>
       <main className={styles.main}>
-        <h1 className={styles.title}>Library Study Room Booking</h1>
-        <div className={styles.bookingForm}>
-          <div className={styles.formGroup}>
-            <label>
-              <strong>Select Library:</strong>
-              <select
-                value={selectedLibrary}
-                onChange={(e) => setSelectedLibrary(e.target.value)}
-                className={styles.input}
-              >
-                <option value="">-- All Libraries --</option>
-                {libraries.map((library) => (
-                  <option key={library} value={library}>
-                    {library}
-                  </option>
-                ))}
-              </select>
-            </label>
+        <div className={styles.hero}>
+          <h1 className={styles.title}>Find Your Perfect Study Space</h1>
+          <p className={styles.subtitle}>
+            Book a study room in any UofT library quickly and easily.
+          </p>
+        </div>
+        <div className={styles.card}>
+          <h2 className={styles.cardTitle}>Search for a Room</h2>
+          <div className={styles.bookingForm}>
+            <div className={styles.formGroup}>
+              <label>
+                <strong>Select Library:</strong>
+                <select
+                  value={selectedLibrary}
+                  onChange={(e) => setSelectedLibrary(e.target.value)}
+                  className={styles.input}
+                >
+                  <option value="">-- All Libraries --</option>
+                  {libraries.map((library) => (
+                    <option key={library} value={library}>
+                      {library}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div className={styles.formGroup}>
+              <label>
+                <strong>Select Date:</strong>
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className={styles.input}
+                />
+              </label>
+            </div>
+            <div className={styles.formGroup}>
+              <label>
+                <strong>Select Start Time:</strong>
+                <input
+                  type="time"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                  className={styles.input}
+                />
+              </label>
+            </div>
+            <div className={styles.formGroup}>
+              <label>
+                <strong>Select End Time:</strong>
+                <input
+                  type="time"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                  className={styles.input}
+                />
+              </label>
+            </div>
+            <div className={styles.formGroup}>
+              <label>
+                <strong>Number of Attendees:</strong>
+                <input
+                  type="number"
+                  min="1"
+                  value={attendees}
+                  onChange={(e) => setAttendees(e.target.value)}
+                  placeholder="Enter number of attendees"
+                  className={styles.input}
+                />
+              </label>
+            </div>
+            <button onClick={handleSearch} className={styles.button}>
+              Search Available Rooms
+            </button>
           </div>
-
-          <div className={styles.formGroup}>
-            <label>
-              <strong>Select Date:</strong>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className={styles.input}
-              />
-            </label>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>
-              <strong>Select Start Time:</strong>
-              <input
-                type="time"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-                className={styles.input}
-              />
-            </label>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>
-              <strong>Select End Time:</strong>
-              <input
-                type="time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className={styles.input}
-              />
-            </label>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>
-              <strong>Number of Attendees:</strong>
-              <input
-                type="number"
-                min="1"
-                value={attendees}
-                onChange={(e) => setAttendees(e.target.value)}
-                placeholder="Enter number of attendees"
-                className={styles.input}
-              />
-            </label>
-          </div>
-
-          <button onClick={handleSearch} className={styles.button}>
-            Search Available Rooms
-          </button>
         </div>
       </main>
       <footer className={styles.footer}>
-        <p>Powered by LibraLink © 2024</p>
+        <p>Powered by <strong>LibraLink</strong> © 2024</p>
       </footer>
     </div>
   );
