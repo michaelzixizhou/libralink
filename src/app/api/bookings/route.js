@@ -1,6 +1,6 @@
 // pages/api/bookings/route.js
 
-import { createBooking, getRoomBookings, getUserBookings } from '../../lib/dynamodb'; // Import DynamoDB functions
+import { createBooking, getRoomBookings, getUserBookings } from '../../../lib/dynamodb'; // Import DynamoDB functions
 
 // Create a booking
 export const POST = async (req, res) => {
