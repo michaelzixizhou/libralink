@@ -49,6 +49,17 @@ export default function ProfilePage() {
               <strong>Library:</strong> {booking.library} <br />
               <strong>Date:</strong> {booking.date} <br />
               <strong>Time:</strong> {booking.startTime} - {booking.endTime}
+              {/* Delete button for each booking */}
+              <button
+                  onClick={() => deleteBooking(booking.id)} // Call deleteBooking with the id of the booking
+                  className={styles.deleteButton}
+                >
+                  <img
+                    src="/images/trash.png" // Path to your PNG image in the public directory
+                    alt="Delete Booking"
+                    className={styles.deleteIcon}
+                  />
+                </button>
             </li>
           ))}
         </ul>
