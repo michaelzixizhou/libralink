@@ -44,4 +44,22 @@
   .bookingItem strong {
     color: #ff9900; /* AWS Banana Yellow */
   }
+
+  .backButton {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff9900; /* AWS Banana Yellow */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .backButton:hover {
+    background-color: #cc7a00; /* Darker Yellow on Hover */
+    cursor: pointer;
+  }
+  
   

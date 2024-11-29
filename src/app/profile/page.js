@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "./profile.module.css";
-
+import Link from "next/link";
 export default function Profile() {
   // Example data for the user and their bookings
   const userName = "John Doe"; // Replace with actual user data when integrated
@@ -41,6 +41,10 @@ export default function Profile() {
         ) : (
           <p className={styles.paragraph}>You have no bookings at the moment.</p>
         )}
+
+      <Link href="/" className={styles.backButton}>
+        Back to Home
+      </Link>
       </div>
     </div>
   );
