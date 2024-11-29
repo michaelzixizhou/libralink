@@ -1,36 +1,61 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import styles from "./profile.module.css";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import styles from "./profile.module.css";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
   const [userBookings, setUserBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (session?.user?.email) {
-      const fetchBookings = async () => {
-        try {
-          setLoading(true);
-          setError(null);
-  
-          const bookings = await fetchUserBookings(session.user.email); // Pass user email as userID
-          setUserBookings(bookings);
-        } catch (err) {
-          console.error("Error fetching bookings:", err.message);
-          setError("Failed to load bookings. Please try again later.");
-        } finally {
-          setLoading(false);
-        }
-      };
+      // Simulate fetching bookings with fake data
+      const fakeBookings = [
+        {
+          id: 1,
+          library: "Robarts Library",
+          room: "Room 203",
+          attendees: 4,
+          date: "2024-12-01",
+          startTime: "10:00",
+          endTime: "12:00",
+        },
+        {
+          id: 2,
+          library: "Gerstein Library",
+          room: "Room 105",
+          attendees: 2,
+          date: "2024-12-03",
+          startTime: "14:00",
+          endTime: "16:00",
+        },
+        {
+          id: 3,
+          library: "E.J. Pratt Library",
+          room: "Room 302",
+          attendees: 6,
+          date: "2024-12-05",
+          startTime: "09:00",
+          endTime: "11:00",
+        },
+      ];
 
-      fetchBookings();
+      // Simulate delay to mimic real fetching
+      setTimeout(() => {
+        setUserBookings(fakeBookings);
+        setLoading(false);
+      }, 1000);
     }
   }, [session]);
+
+  // Handle delete booking
+  const handleDelete = (id) => {
+    const updatedBookings = userBookings.filter((booking) => booking.id !== id);
+    setUserBookings(updatedBookings);
+  };
 
   if (status === "loading") {
     return <p>Loading session...</p>;
@@ -49,17 +74,24 @@ export default function ProfilePage() {
       <h3 className={styles.subtitle}>Your Bookings</h3>
       {loading ? (
         <p>Loading bookings...</p>
-      ) : error ? (
-        <p className={styles.error}>{error}</p>
       ) : userBookings.length > 0 ? (
         <ul className={styles.bookingList}>
           {userBookings.map((booking) => (
             <li key={booking.id} className={styles.bookingItem}>
               <div>
                 <strong>Library:</strong> {booking.library} <br />
+                <strong>Room:</strong> {booking.room} <br />
                 <strong>Date:</strong> {booking.date} <br />
-                <strong>Time:</strong> {booking.startTime} - {booking.endTime}
+                <strong>Time:</strong> {booking.startTime} - {booking.endTime} <br />
+                <strong>Attendees:</strong> {booking.attendees}
               </div>
+              {/* Delete Button */}
+              <button
+                className={styles.deleteButton}
+                onClick={() => handleDelete(booking.id)}
+              >
+                ❌
+              </button>
             </li>
           ))}
         </ul>

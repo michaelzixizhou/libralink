@@ -1,76 +1,90 @@
+/* General Page Styles */
 .container {
     font-family: "Arial", sans-serif;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #002a5c; /* UofT Blue */
+    background-color: #f4f4f9;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .title {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    color: #0056a6; /* UofT Blue */
     text-align: center;
+    margin-bottom: 20px;
   }
   
   .subtitle {
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    color: #0056a6; /* UofT Blue */
+    margin: 20px 0 10px;
   }
   
   .paragraph {
     font-size: 16px;
     line-height: 1.6;
+    margin-bottom: 20px;
   }
   
-  .error {
-    color: red;
-    font-size: 14px;
-  }
-  
+  /* Booking List */
   .bookingList {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
   }
   
   .bookingItem {
-    background-color: #eaf4ff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    border: 2px solid #ff9900; /* AWS Banana Yellow */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bookingItem div {
+    flex-grow: 1;
+    margin-right: 10px;
   }
   
   .deleteButton {
-    background-color: transparent;
+    background-color: #ff9900; /* AWS Banana Yellow */
+    color: white;
     border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
     cursor: pointer;
+    font-size: 14px;
   }
   
-  .deleteIcon {
-    width: 24px;
-    height: 24px;
+  .deleteButton:hover {
+    background-color: #cc7a00; /* Darker AWS Yellow */
+    transform: scale(1.1);
+    transition: all 0.2s;
   }
   
+  /* Back Button */
   .backButton {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #ff9900; /* AWS Banana Yellow */
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #0056a6; /* UofT Blue */
     color: white;
     text-decoration: none;
+    border-radius: 4px;
     font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .backButton:hover {
-    background-color: #cc7a00; /* Darker yellow on hover */
-    cursor: pointer;
+    background-color: #003e7e; /* Darker UofT Blue */
+    transform: scale(1.05);
+    transition: all 0.2s;
   }
   
