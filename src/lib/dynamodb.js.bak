@@ -1,0 +1,123 @@
+import AWS from 'aws-sdk';
+
+// Configure AWS SDK
+AWS.config.update({
+    region: 'us-west-2',  // Replace with your AWS region
+    // SECRET KEY
+});
+
+const dynamoDB = new AWS.DynamoDB.DocumentClient();
+
+// Create a room (Insert room details)
+export const createRoom = async (roomData) => {
+    const params = {
+        TableName: 'RoomsAndBookings',
+        Item: {
+            PK: `ROOM#${roomData.roomNumber}`,
+            SK: 'DETAILS',
+            roomNumber: roomData.roomNumber,
+            capacity: roomData.capacity,
+            location: roomData.location,
+            openTime: roomData.openTime,
+            closeTime: roomData.closeTime,
+        },
+    };
+
+    try {
+        await dynamoDB.put(params).promise();
+        console.log(`Room ${roomData.roomNumber} created successfully!`);
+    } catch (error) {
+        console.error('Error creating room:', error);
+        throw new Error('Error creating room');
+    }
+};
+
+// Create a booking (Insert booking details for a room)
+export const createBooking = async (bookingData) => {
+    const params = {
+        TableName: 'RoomsAndBookings',
+        Item: {
+            PK: `ROOM#${bookingData.roomNumber}`,
+            SK: `BOOKING#${bookingData.userID}#${bookingData.startTime}`,
+            userID: bookingData.userID,
+            startTime: bookingData.startTime,
+            endTime: bookingData.endTime,
+        },
+    };
+
+    try {
+        await dynamoDB.put(params).promise();
+        console.log(`Booking created for room ${bookingData.roomNumber} by user ${bookingData.userID}`);
+    } catch (error) {
+        console.error('Error creating booking:', error);
+        throw new Error('Error creating booking');
+    }
+};
+
+// Get room details (Retrieve information for a specific room)
+export const getRoomDetails = async (roomNumber) => {
+    const params = {
+        TableName: 'RoomsAndBookings',
+        Key: {
+            PK: `ROOM#${roomNumber}`,
+            SK: 'DETAILS',
+        },
+    };
+
+    try {
+        const data = await dynamoDB.get(params).promise();
+        if (data.Item) {
+            console.log('Room details:', data.Item);
+            return data.Item;
+        } else {
+            console.log('Room not found');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching room details:', error);
+        throw new Error('Error fetching room details');
+    }
+};
+
+// Get all bookings for a room (Retrieve all bookings associated with a room)
+export const getRoomBookings = async (roomNumber) => {
+    const params = {
+        TableName: 'RoomsAndBookings',
+        KeyConditionExpression: 'PK = :roomPK AND begins_with(SK, :bookingSK)',
+        ExpressionAttributeValues: {
+            ':roomPK': `ROOM#${roomNumber}`,
+            ':bookingSK': 'BOOKING#',
+        },
+    };
+
+    try {
+        const data = await dynamoDB.query(params).promise();
+        console.log('Bookings for room', roomNumber, ':', data.Items);
+        return data.Items;
+    } catch (error) {
+        console.error('Error fetching room bookings:', error);
+        throw new Error('Error fetching room bookings');
+    }
+};
+
+// Get all rooms a user has booked (Retrieve all bookings for a specific user)
+export const getUserBookings = async (userID) => {
+    const params = {
+        TableName: 'RoomsAndBookings',
+        KeyConditionExpression: 'PK = :userPK AND begins_with(SK, :bookingSK)',
+        ExpressionAttributeValues: {
+            ':userPK': `USER#${userID}`,
+            ':bookingSK': 'BOOKING#',
+        },
+    };
+
+    try {
+        const data = await dynamoDB.query(params).promise();
+        console.log('Bookings for user', userID, ':', data.Items);
+        return data.Items;
+    } catch (error) {
+        console.error('Error fetching user bookings:', error);
+        throw new Error('Error fetching user bookings');
+    }
+};
+
