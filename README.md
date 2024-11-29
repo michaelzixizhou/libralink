@@ -3,16 +3,6 @@ Both students and staff at University of Toronto face issues with booking rooms.
 
 Welcome to our LibraLink, designed to make reserving rooms easier and more efficient for both students and stagg. Our platform helps you find available rooms based on your specific preferences, all in one seamless experience. Users no longer need to navigate through multiple pages to search for available rooms in different buildings - our web app is able to consolidates all your needs into a single, user-friendly interface.
 
-With just a few clicks, you can:
-
-Select your desired library from a list of available options.
-Choose your preferred date and time, ensuring the room fits perfectly into your schedule.
-Specify the number of attendees, so the app filters rooms that meet your needs.
-Our dynamic, real-time search feature will instantly show you the available rooms without the need to jump between different pages. All of this is made possible with an intuitive interface that allows you to easily adjust your preferences and instantly view available rooms, eliminating the hassle of redundant searches.
-
-No more wasting time navigating through numerous pages for each library – the app takes care of everything in one place, giving you the convenience of finding the perfect room for your study or meeting needs, whenever you need it.
-
-Say goodbye to confusion and inefficiency – with our Room Booking Web App, booking a space is as easy as setting your preferences and hitting search.
 
 # Table of Contents
 
@@ -75,7 +65,7 @@ At any time, you can view a list of your active bookings, including important de
 **Time**: The start and end time of your reserved room.
 This overview gives you a quick snapshot of your upcoming study sessions or meetings, making it easy to track all your reservations.
 
-<img src="images/home.png" alt="Profile" width="300"/>
+<img src="images/home.jpeg" alt="Profile" width="300"/>
 
 ### Delete Unwanted Bookings
 Plans change, and deleting any booking you no longer need is simple. Each booking displays a delete button next to it, which, when clicked, will remove the booking from your list.
