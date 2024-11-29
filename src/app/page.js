@@ -65,6 +65,10 @@ export default function Home() {
     }, 500);
   };
 
+  const handleBookRoom = (room) => {
+    alert(`You have booked Room ${room.roomNumber} at ${room.library}`);
+  };
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -91,78 +95,90 @@ export default function Home() {
             Book a study room in any UofT library quickly and easily.
           </p>
         </div>
-        <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Search for a Room</h2>
-          <div className={styles.bookingForm}>
-            <div className={styles.formGroup}>
-              <label>
-                <strong>Select Library:</strong>
-                <select
-                  value={selectedLibrary}
-                  onChange={(e) => setSelectedLibrary(e.target.value)}
-                  className={styles.input}
-                >
-                  <option value="">-- All Libraries --</option>
-                  {libraries.map((library) => (
-                    <option key={library} value={library}>
-                      {library}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div className={styles.formGroup}>
-              <label>
-                <strong>Select Date:</strong>
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className={styles.input}
-                />
-              </label>
-            </div>
-            <div className={styles.formGroup}>
-              <label>
-                <strong>Select Start Time:</strong>
-                <input
-                  type="time"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  className={styles.input}
-                />
-              </label>
-            </div>
-            <div className={styles.formGroup}>
-              <label>
-                <strong>Select End Time:</strong>
-                <input
-                  type="time"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  className={styles.input}
-                />
-              </label>
-            </div>
-            <div className={styles.formGroup}>
-              <label>
-                <strong>Number of Attendees:</strong>
-                <input
-                  type="number"
-                  min="1"
-                  value={attendees}
-                  onChange={(e) => setAttendees(e.target.value)}
-                  placeholder="Enter number of attendees"
-                  className={styles.input}
-                />
-              </label>
-            </div>
 
-            <button onClick={handleSearch} className={styles.button}>
-              Search Available Rooms
-            </button>
-          </div>
-        </div>
+        <div className={styles.card}>
+  <h2 className={styles.cardTitle}>Search for a Room</h2>
+  <div className={styles.bookingForm}>
+    <div className={styles.formRow}>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Select Library:
+          <select
+            value={selectedLibrary}
+            onChange={(e) => setSelectedLibrary(e.target.value)}
+            className={styles.input}
+          >
+            <option value="">-- All Libraries --</option>
+            {libraries.map((library) => (
+              <option key={library} value={library}>
+                {library}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Select Date:
+          <input
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            className={styles.input}
+          />
+        </label>
+      </div>
+    </div>
+
+    <div className={styles.formRow}>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Start Time:
+          <input
+            type="time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className={styles.input}
+          />
+        </label>
+      </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          End Time:
+          <input
+            type="time"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            className={styles.input}
+          />
+        </label>
+      </div>
+    </div>
+
+    <div className={styles.formRow}>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Number of Attendees:
+          <input
+            type="number"
+            min="1"
+            value={attendees}
+            onChange={(e) => setAttendees(e.target.value)}
+            placeholder="Enter number of attendees"
+            className={styles.input}
+          />
+        </label>
+      </div>
+    </div>
+
+    <button onClick={handleSearch} className={styles.button}>
+      Search Available Rooms
+    </button>
+  </div>
+</div>
+
 
         {/* Room Results */}
         <div className={styles.results}>
@@ -172,10 +188,18 @@ export default function Home() {
             <ul className={styles.roomList}>
               {rooms.map((room) => (
                 <li key={room.id} className={styles.roomItem}>
-                  <strong>Library:</strong> {room.library} <br />
-                  <strong>Room:</strong> {room.roomNumber} <br />
-                  <strong>Capacity:</strong> {room.capacity} <br />
-                  <strong>Available From:</strong> {room.openTime} - {room.closeTime}
+                  <div>
+                    <strong>Library:</strong> {room.library} <br />
+                    <strong>Room:</strong> {room.roomNumber} <br />
+                    <strong>Capacity:</strong> {room.capacity} <br />
+                    <strong>Available From:</strong> {room.openTime} - {room.closeTime}
+                  </div>
+                  <button
+                    className={styles.bookButton}
+                    onClick={() => handleBookRoom(room)}
+                  >
+                    Book
+                  </button>
                 </li>
               ))}
             </ul>
