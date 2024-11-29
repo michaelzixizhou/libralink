@@ -62,3 +62,20 @@
     cursor: pointer;
   }
   
+  .deleteButton {
+    background-color: rgb(247, 103, 103);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    top: 10px;
+    right: 10px;
+    /* position: absolute; */
+  }
+
+  .deleteIcon {
+    width: 20px;
+    height: 20px;
+  }
