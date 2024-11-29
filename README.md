@@ -24,9 +24,7 @@ Say goodbye to confusion and inefficiency – with our Room Booking Web App, boo
     3. [Choose Your Room](#choose-your-room)
     4. [Check Your Bookings](#check-your-bookings)
     5. [Delete Unwanted Bookings](#delete-unwanted-bookings)
-4. [Getting Started](#getting-started)
-5. [Learn More](#learn-more)
-6. [Deploy on Vercel](#deploy-on-vercel)
+6. [Challenges and Solutions](#challenges-and-solutions)
 
 
 
@@ -62,6 +60,9 @@ Users can quickly narrow down their choices based on the following preferences:
 
 By adjusting these filters, you can quickly and efficiently find the best room that matches all of your preferences, saving you time and effort. No more navigating between pages or going back and forth to check availability – everything you need is right at your fingertips.
 
+<img src="images/profile.png" alt="Home" width="300"/>
+
+
 ## Choose Your Room
 
 LibraLink will then provide a list of available rooms from a variety of libraries and buildings. The user can then choose which room to book, according to their listed times and location. 
@@ -74,5 +75,21 @@ At any time, you can view a list of your active bookings, including important de
 **Time**: The start and end time of your reserved room.
 This overview gives you a quick snapshot of your upcoming study sessions or meetings, making it easy to track all your reservations.
 
+<img src="images/home.png" alt="Profile" width="300"/>
+
 ### Delete Unwanted Bookings
 Plans change, and deleting any booking you no longer need is simple. Each booking displays a delete button next to it, which, when clicked, will remove the booking from your list.
+
+# Challenges and Solutions
+
+## Calling the APIs
+While we've successfully developed both the frontend and backend of the application, the key challenge lies in ensuring seamless communication between the two. Establishing robust API calls is crucial for ensuring that data flows smoothly between the user interface and the server, and that users can interact with their bookings in real time.
+
+## User Interactions with Their Bookings
+Users can view and manage their bookings directly through the app. They are presented with a list of their current reservations, with the ability to delete any booking they no longer need. This functionality allows for users to have full control over their scheduled rooms, and the option to opt out of a booking when not needed. 
+
+## User authentication 
+As our platform serves the University of Toronto community, user authentication is a critical part of the system. To maintain security and ensure that only authorized individuals can make bookings, users must sign in with their university credentials. If a user is not signed in, they will be unable to access their bookings, and an error message will be displayed.
+<img src="images/error message.jpeg" alt="Error Message" width="200"/>
+
+# The
