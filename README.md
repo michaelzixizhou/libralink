@@ -15,6 +15,7 @@ Welcome to our LibraLink, designed to make reserving rooms easier and more effic
     4. [Check Your Bookings](#check-your-bookings)
     5. [Delete Unwanted Bookings](#delete-unwanted-bookings)
 6. [Challenges and Solutions](#challenges-and-solutions)
+7. [Video Demo](#video-demo)
 
 
 
@@ -81,3 +82,8 @@ Users can view and manage their bookings directly through the app. They are pres
 As our platform serves the University of Toronto community, user authentication is a critical part of the system. To maintain security and ensure that only authorized individuals can make bookings, users must sign in with their university credentials. If a user is not signed in, they will be unable to access their bookings, and an error message will be displayed.
 
 <img src="/public/images/error message.jpeg" alt="Error Message" width="500"/>
+
+# Video Demo
+https://youtu.be/gjTMV5LwtaA
+
+Enjoy!
