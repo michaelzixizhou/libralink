@@ -61,8 +61,11 @@ LibraLink will then provide a list of available rooms from a variety of librarie
 At any time, you can view a list of your active bookings, including important details such as:
 
 **Library**: The location of your reserved room.
+
 **Date**: The scheduled date for your booking.
+
 **Time**: The start and end time of your reserved room.
+
 This overview gives you a quick snapshot of your upcoming study sessions or meetings, making it easy to track all your reservations.
 
 <img src="/public/images/home.jpeg" alt="Profile" width="600"/>
