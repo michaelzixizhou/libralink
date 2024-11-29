@@ -13,19 +13,21 @@
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
-    color: #002a5c; /* UofT Blue */
   }
   
   .subtitle {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #0056b3; /* Lighter UofT Blue */
   }
   
   .paragraph {
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 20px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
   }
   
   .bookingList {
@@ -39,10 +41,20 @@
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  .bookingItem strong {
-    color: #ff9900; /* AWS Banana Yellow */
+  .deleteButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .deleteIcon {
+    width: 24px;
+    height: 24px;
   }
   
   .backButton {
@@ -58,24 +70,7 @@
   }
   
   .backButton:hover {
-    background-color: #cc7a00; /* Darker yellow for hover effect */
+    background-color: #cc7a00; /* Darker yellow on hover */
     cursor: pointer;
   }
   
-  .deleteButton {
-    background-color: rgb(247, 103, 103);
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    top: 10px;
-    right: 10px;
-    /* position: absolute; */
-  }
-
-  .deleteIcon {
-    width: 20px;
-    height: 20px;
-  }
