@@ -17,7 +17,7 @@ export default function Home() {
         <div className={styles.page}>
             <header className={styles.header}>
                 <Image
-                    src="/logo.svg" // Ensure you have this logo in your public directory
+                    src="/images/logo.svg" // Ensure you have this logo in your public directory
                     alt="LibraLink Logo"
                     width={150}
                     height={50}
