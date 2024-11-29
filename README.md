@@ -50,7 +50,7 @@ Users can quickly narrow down their choices based on the following preferences:
 
 By adjusting these filters, you can quickly and efficiently find the best room that matches all of your preferences, saving you time and effort. No more navigating between pages or going back and forth to check availability – everything you need is right at your fingertips.
 
-<img src="/public/images/profile.png" alt="Home" width="500"/>
+<img src="/public/images/profile1.png" alt="Home" width="600"/>
 
 
 ## Choose Your Room
@@ -65,7 +65,7 @@ At any time, you can view a list of your active bookings, including important de
 **Time**: The start and end time of your reserved room.
 This overview gives you a quick snapshot of your upcoming study sessions or meetings, making it easy to track all your reservations.
 
-<img src="/public/images/home.jpeg" alt="Profile" width="500"/>
+<img src="/public/images/home.jpeg" alt="Profile" width="600"/>
 
 ### Delete Unwanted Bookings
 Plans change, and deleting any booking you no longer need is simple. Each booking displays a delete button next to it, which, when clicked, will remove the booking from your list.
