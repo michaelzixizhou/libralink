@@ -22,17 +22,28 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [attendees, setAttendees] = useState("");
 
   const handleSearch = () => {
     const library = selectedLibrary || "all libraries";
     const date = selectedDate || "any date";
     const start = startTime || "any start time";
     const end = endTime || "any end time";
+    const attendeesCount = attendees || "any number of attendees";
 
     alert(
-      `You are searching for empty rooms in ${library} on ${date} between ${start} and ${end}.`
+      `You are searching for empty rooms in ${library} on ${date} between ${start} and ${end} for ${attendeesCount}.`
     );
   };
+    // Placeholder for future database integration
+    // console.log({
+    //     library: selectedLibrary || "all",
+    //     date: selectedDate || "any",
+    //     startTime: startTime || "any",
+    //     endTime: endTime || "any",
+    //     attendees: attendees || "any",
+    //   });
+    // };
 
   return (
     <div className={styles.page}>
@@ -113,6 +124,20 @@ export default function Home() {
             </label>
           </div>
 
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Number of Attendees:</strong>
+              <input
+                type="number"
+                min="1"
+                value={attendees}
+                onChange={(e) => setAttendees(e.target.value)}
+                placeholder="Enter number of attendees"
+                className={styles.input}
+              />
+            </label>
+          </div>
+          
           <button onClick={handleSearch} className={styles.button}>
             Search Available Rooms
           </button>
