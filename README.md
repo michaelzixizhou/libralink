@@ -27,10 +27,6 @@ Welcome to our LibraLink, designed to make reserving rooms easier and more effic
 - Node.js and npm installed
 - Clone the repository to your local machine.
 
-
-
-## 
-
 # How to Use
 
 ## Logging In
