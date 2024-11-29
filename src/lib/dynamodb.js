@@ -162,3 +162,31 @@ export const getFilteredRooms = async (params) => {
         throw new Error("Error fetching bookings")
     }
 };
+
+export const getAllRooms = async () => {
+    const params = {
+        TableName: 'RoomsAndBookings',  // Name of your DynamoDB table
+        FilterExpression: 'SK = :details',  // Only return items where SK is 'DETAILS'
+        ExpressionAttributeValues: {
+            ':details': { S: 'DETAILS' },  // We only want the rooms, so we filter by 'DETAILS' SK
+        },
+    };
+
+    try {
+        // Perform a Scan on the DynamoDB table
+        const command = new ScanCommand(params);
+        const data = await client.send(command);
+
+        // Check if we received any items
+        if (data.Items && data.Items.length > 0) {
+            console.log('All rooms:', data.Items);
+            return data.Items;  // Return all rooms
+        } else {
+            console.log('No rooms found');
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching rooms:', error);
+        throw new Error('Error fetching rooms');
+    }
+};

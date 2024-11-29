@@ -1,6 +1,4 @@
-'use client'
-import { getTableList, createRoom, getRoomDetails, createBooking, getRoomBookings, getUserBookings } from "../../lib/dynamodb.js"
-import React, { useState } from 'react';
+import { getTableList, getAllRooms, createRoom, getRoomDetails, createBooking, getRoomBookings, getUserBookings } from "../../lib/dynamodb.js"
 
 const roomNumber = '101';  // Replace with a valid room number in your DynamoDB
 
@@ -36,7 +34,7 @@ createBooking(bookingData)
 const testCreateRoom = async () => {
     // Sample room data for testing
     const roomData = {
-        roomNumber: roomNumber,
+        roomNumber: '121',
         capacity: 30,
         location: '1st Floor',
         openTime: '08:00',
@@ -88,60 +86,17 @@ const testGetUserBookings = async (userID) => {
         console.error('Error in testGetUserBookings:', error);
     }
 };
-const testGetRoomsAPI = async (queryParams) => {
-    // Simulate a mock request object
-    const req = {
-        query: queryParams,  // Query parameters from the test
-    };
-
-    // Simulate a mock response object
-    const res = {
-        statusCode: null,
-        data: null,
-        status(status) {
-            this.statusCode = status;
-            return this;
-        },
-        json(data) {
-            this.data = data;
-        },
-    };
-    console.log("apitest")
-
-    // Call the API handler with the mock req/res
-    await GET(req, res);
-
-    // Log the result
-    if (res.statusCode === 200) {
-        console.log('API Response:', res.data);  // This is the data you would return from your API
-    } else {
-        console.error('Error:', res.data);  // In case of an error, print the error message
-    }
-};
-const testGet = async () => {
-    const get = fetch("/api/bookings")
-    console.log(get)
-
-}
 
 
-// Example 1: Test with specific query params
-const queryParams1 = {
-    library: 'Library A',
-    date: '2024-12-01',
-    startTime: '09:00',
-    endTime: '17:00',
-    numAttendees: '20'
-};
 
-testGetRoomsAPI(queryParams1)
+
 export default function Page() {
-    const s = getTableList()
-    const rooms = getRoomDetails(roomNumber)
-    const m = createBooking(bookingData)
-    const getuser = testGetUserBookings("user123")
-    const getbookings = testGetRoomBookings(roomNumber)
-    const apitest = testGetRoomsAPI(queryParams1)
-
-    const t = testGet()
+    // const s = getTableList()
+    const t = testCreateRoom()
+    // const rooms = getRoomDetails(roomNumber)
+    // const m = createBooking(bookingData)
+    // const getuser = testGetUserBookings("user123")
+    // const getbookings = testGetRoomBookings(roomNumber)
+    // console.log("testing")
+    const dad = getAllRooms()
 }
