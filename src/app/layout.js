@@ -1,3 +1,5 @@
+'use client';
+
 import './globals.css';
 import AuthProvider from '../components/AuthProvider';
 
@@ -10,4 +12,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
