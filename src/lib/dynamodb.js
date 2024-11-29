@@ -146,3 +146,19 @@ export const getUserBookings = async (userID) => {
         throw new Error('Error fetching user bookings');
     }
 }
+
+export const getFilteredRooms = async (params) => {
+    try {
+        const command = new ScanCommand(params);
+        const data = await client.send(command);
+
+        // Log the result of the query
+        console.log('Filtered rooms:', data.Items);
+        return data.Items;
+
+        res.status(200).json(data.Items);  // Return the filtered rooms as a response
+    } catch (error) {
+        console.error('Error fetching filtered rooms:', error);
+        throw new Error("Error fetching bookings")
+    }
+};
