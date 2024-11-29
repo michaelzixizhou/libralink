@@ -24,25 +24,45 @@ export default function Home() {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [attendees, setAttendees] = useState("");
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = () => {
-    if (startTime && endTime && startTime >= endTime) {
-      alert("Start time must be earlier than end time.");
-      return;
-    }
+    setLoading(true);
 
-    if (attendees && attendees <= 0) {
-      alert("Please enter a valid number of attendees.");
-      return;
-    }
+    // Hardcoded room data
+    const hardcodedRooms = [
+      {
+        id: 1,
+        library: "Robarts Library",
+        roomNumber: "203",
+        capacity: 6,
+        openTime: "09:00",
+        closeTime: "21:00",
+      },
+      {
+        id: 2,
+        library: "Gerstein Library",
+        roomNumber: "105",
+        capacity: 4,
+        openTime: "10:00",
+        closeTime: "20:00",
+      },
+      {
+        id: 3,
+        library: "E.J. Pratt Library",
+        roomNumber: "302",
+        capacity: 8,
+        openTime: "08:00",
+        closeTime: "22:00",
+      },
+    ];
 
-    const message = `
-      📚 Library: ${selectedLibrary || "All Libraries"}
-      📅 Date: ${selectedDate || "Any Date"}
-      ⏰ Time: ${startTime || "Any Start Time"} - ${endTime || "Any End Time"}
-      👥 Attendees: ${attendees || "Any Number"}
-    `;
-    alert(message);
+    // Simulate a delay to mimic fetching data
+    setTimeout(() => {
+      setRooms(hardcodedRooms);
+      setLoading(false);
+    }, 500);
   };
 
   return (
@@ -137,10 +157,31 @@ export default function Home() {
                 />
               </label>
             </div>
+
             <button onClick={handleSearch} className={styles.button}>
               Search Available Rooms
             </button>
           </div>
+        </div>
+
+        {/* Room Results */}
+        <div className={styles.results}>
+          {loading ? (
+            <p>Loading rooms...</p>
+          ) : rooms.length > 0 ? (
+            <ul className={styles.roomList}>
+              {rooms.map((room) => (
+                <li key={room.id} className={styles.roomItem}>
+                  <strong>Library:</strong> {room.library} <br />
+                  <strong>Room:</strong> {room.roomNumber} <br />
+                  <strong>Capacity:</strong> {room.capacity} <br />
+                  <strong>Available From:</strong> {room.openTime} - {room.closeTime}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No rooms available. Click "Search Available Rooms" to view rooms.</p>
+          )}
         </div>
       </main>
       <footer className={styles.footer}>
