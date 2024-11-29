@@ -1,74 +1,155 @@
-// The "use client" directive must be the first line
 "use client";
 
-// Import necessary components from Next.js and other libraries
-import Image from "next/image";
-import styles from "./page.module.css";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./page.module.css";
 
 export default function Home() {
-    const [welcomeMessage, setWelcomeMessage] = useState('Welcome to LibraLink!');
+  const libraries = [
+    "Robarts Library",
+    "Gerstein Library",
+    "E.J. Pratt Library",
+    "OISE Library",
+    "Architecture, Landscape, and Design (Eberhard Zeidler Library)",
+    "Dentistry Library (Harry R. Abbott)",
+    "Engineering & Computer Science Library",
+    "Law Library (Bora Laskin)",
+    "Music Library",
+    "Regis College Library"
+  ];
 
-    const updateMessage = () => {
-        setWelcomeMessage('Thank you for visiting!');
-    };
+  const [selectedLibrary, setSelectedLibrary] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [attendees, setAttendees] = useState("");
 
-    return (
-        <div className={styles.page}>
-            <header className={styles.header}>
-                <Image
-                    src="/images/logo.svg" // Ensure you have this logo in your public directory
-                    alt="LibraLink Logo"
-                    width={150}
-                    height={50}
-                    priority
-                />
-                <nav>
-                    <a href="#" className={styles.link}>Home</a>
-                    <a href="#" className={styles.link}>About</a>
-                    <a href="#" className={styles.link}>Contact</a>
-                </nav>
-            </header>
-            <main className={styles.main}>
-                <h1>{welcomeMessage}</h1>
-                <button onClick={updateMessage} className={styles.button}>
-                    Click me!
-                </button>
-                <ol>
-                    <li>Edit <code>src/app/page.js</code> to modify this page.</li>
-                    <li>Save and see your changes instantly.</li>
-                </ol>
-                <div className={styles.ctas}>
-                    <a
-                        className={styles.primary}
-                        href="https://nextjs.org/docs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn More
-                    </a>
-                </div>
-            </main>
-            <footer className={styles.footer}>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    <Image
-                        src="/help.svg"
-                        alt="Help icon"
-                        width={16}
-                        height={16}
-                    />
-                    Help
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    <Image
-                        src="/settings.svg"
-                        alt="Settings icon"
-                        width={16}
-                        height={16}
-                    />
-                    Settings
-                </a>
-            </footer>
-        </div>
+  const handleSearch = () => {
+    const library = selectedLibrary || "all libraries";
+    const date = selectedDate || "any date";
+    const start = startTime || "any start time";
+    const end = endTime || "any end time";
+    const attendeesCount = attendees || "any number of attendees";
+
+    alert(
+      `You are searching for empty rooms in ${library} on ${date} between ${start} and ${end} for ${attendeesCount}.`
     );
+  };
+    // Placeholder for future database integration
+    // console.log({
+    //     library: selectedLibrary || "all",
+    //     date: selectedDate || "any",
+    //     startTime: startTime || "any",
+    //     endTime: endTime || "any",
+    //     attendees: attendees || "any",
+    //   });
+    // };
+
+  return (
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <Image
+          src="/images/logo.png"
+          alt="LibraLink Logo"
+          width={150}
+          height={150}
+          priority
+        />
+        <nav className={styles.nav}>
+          <a href="#" className={styles.navLink}>
+            Home
+          </a>
+          <a href="#" className={styles.navLink}>
+            About
+          </a>
+          <a href="#" className={styles.navLink}>
+            Contact
+          </a>
+          <Link href="/profile" className={styles.profileLink}>
+            Profile
+          </Link>
+        </nav>
+      </header>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Library Study Room Booking</h1>
+        <div className={styles.bookingForm}>
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Select Library:</strong>
+              <select
+                value={selectedLibrary}
+                onChange={(e) => setSelectedLibrary(e.target.value)}
+                className={styles.input}
+              >
+                <option value="">-- All Libraries --</option>
+                {libraries.map((library) => (
+                  <option key={library} value={library}>
+                    {library}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Select Date:</strong>
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className={styles.input}
+              />
+            </label>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Select Start Time:</strong>
+              <input
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className={styles.input}
+              />
+            </label>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Select End Time:</strong>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className={styles.input}
+              />
+            </label>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              <strong>Number of Attendees:</strong>
+              <input
+                type="number"
+                min="1"
+                value={attendees}
+                onChange={(e) => setAttendees(e.target.value)}
+                placeholder="Enter number of attendees"
+                className={styles.input}
+              />
+            </label>
+          </div>
+
+          <button onClick={handleSearch} className={styles.button}>
+            Search Available Rooms
+          </button>
+        </div>
+      </main>
+      <footer className={styles.footer}>
+        <p>Powered by LibraLink © 2024</p>
+      </footer>
+    </div>
+  );
 }
